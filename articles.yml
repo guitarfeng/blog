@@ -17,11 +17,3 @@
     - 数学公式
     - papery
   abstract: 这篇文章展示了如何在papery中使用代码和数学公式。 
-
-- id: zf_new 
-  title: My first Post 
-  postedOn: !!str 2013-08-09
-  author: zf
-  tags: 
-    - test 
-  abstract: try it 

@@ -4,7 +4,7 @@
         <title>RSS源标题</title>
         <link>博客URL</link>
         <description>RSS源描述</description>
-        <lastBuildDate>Fri, 09 Aug 2013 20:48:35 +0800</lastBuildDate>
+        <lastBuildDate>Mon, 19 Aug 2013 15:26:16 +0800</lastBuildDate>
         <language>zh-cn</language>
         
         <item> 
@@ -23,15 +23,6 @@
             <author>邮箱 博客主</author> 
             <pubDate>Tue, 01 Jan 2013 00:00:00 +0800</pubDate> 
             <description>这篇文章展示了如何在papery中使用代码和数学公式。</description> 
-        </item> 
-        
-        <item> 
-            <title>My first Post</title> 
-            <link>博客URL/articles/zf_new.html?utm_source=rss&amp;utm_medium=rss</link> 
-            <guid>博客URL/articles/zf_new.html</guid> 
-            <author>邮箱 博客主</author> 
-            <pubDate>Fri, 09 Aug 2013 00:00:00 +0800</pubDate> 
-            <description>try it</description> 
         </item> 
         
     </channel>

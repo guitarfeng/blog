@@ -1,4 +1,4 @@
-## 1. Integer
+##1. Integer
 1. find number of 1s
 + next largest smaller
 + smallest larger number
@@ -12,9 +12,9 @@
 + given an integer, find the closest number that is palindrome
 + implement putlong() by putchar()
 
-## 2. Bit array
+##2. Bit array
 
-## 3. Linked list
+##3. Linked list
 1. find cycle,
 + reverse LL
 + delete a node in middle
@@ -23,7 +23,7 @@
 + find n-th to last node to end
 + number is represented by LL, add 2 numbers
 
-## 4. Array
+##4. Array
 1. Longest common substring (LCSubstr)
 +  Longest common subsequence (LCS).
 +  Longest increasing subsequence (LIS).
@@ -38,7 +38,7 @@
 +  Given {a1, a2, a3, ..}, {b1, b2, b3, …}, get {a1, b1, a2, b2, …}
 +  Given 2 arrays A and B, A large enough to hold both, merge B into A. 
 
-## 5. String
+##5. String
 1. KMP, Rabin-Karp, Boyer Moore
 +  reverse string
 +  reverse words in string  

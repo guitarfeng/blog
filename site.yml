@@ -1,6 +1,6 @@
-title: 技术备忘录
-subtitle: 记忆天堂
-link: localhost
+title: 博客标题
+subtitle: 博客副标题
+link: 博客URL
 meta:
   description: 页面meta中的description
   keywords: !!seq
@@ -9,9 +9,9 @@ meta:
     - 关键词3
   author: 页面meta中的author
 master:
-  name: 陈兆丰
+  name: 博客主
   about: 个人简介
-  email: xx@xx.com
+  email: 邮箱
 rss:
   title: RSS源标题
   desc: RSS源描述
