@@ -4,16 +4,16 @@
         <title>RSS源标题</title>
         <link>博客URL</link>
         <description>RSS源描述</description>
-        <lastBuildDate>Mon, 19 Aug 2013 15:26:16 +0800</lastBuildDate>
+        <lastBuildDate>Mon, 19 Aug 2013 15:53:34 +0800</lastBuildDate>
         <language>zh-cn</language>
         
         <item> 
-            <title>江城子</title> 
-            <link>博客URL/articles/first-post.html?utm_source=rss&amp;utm_medium=rss</link> 
-            <guid>博客URL/articles/first-post.html</guid> 
+            <title>Google Interview Preparation List</title> 
+            <link>博客URL/articles/google_list.html?utm_source=rss&amp;utm_medium=rss</link> 
+            <guid>博客URL/articles/google_list.html</guid> 
             <author>邮箱 博客主</author> 
-            <pubDate>Wed, 02 Jan 2013 00:00:00 +0800</pubDate> 
-            <description>十年生死两茫茫，不思量，自难忘。千里孤坟，无处话凄凉。纵使相逢应不识，尘满面，鬓如霜。夜来幽梦忽还乡。小轩窗，正梳妆。相顾无言，惟有泪千行。料得年年肠断处：明月夜，短松冈。</description> 
+            <pubDate>Mon, 19 Aug 2013 00:00:00 +0800</pubDate> 
+            <description>null</description> 
         </item> 
         
         <item> 
