@@ -2,25 +2,52 @@
 <rss version="2.0">
     <channel>
         <title>RSS源标题</title>
-        <link>博客URL</link>
+        <link>http://xx.xx.com</link>
         <description>RSS源描述</description>
-        <lastBuildDate>Mon, 19 Aug 2013 15:53:34 +0800</lastBuildDate>
+        <lastBuildDate>Thu, 22 Aug 2013 14:47:27 +0800</lastBuildDate>
         <language>zh-cn</language>
         
         <item> 
+            <title>Answers for Integer Problems</title> 
+            <link>http://xx.xx.com/articles/prob_integer.html?utm_source=rss&amp;utm_medium=rss</link> 
+            <guid>http://xx.xx.com/articles/prob_integer.html</guid> 
+            <author>xx@xx.com zf</author> 
+            <pubDate>Tue, 20 Aug 2013 00:00:00 +0800</pubDate> 
+            <description>Google 面试列表答案-整数问题</description> 
+        </item> 
+        
+        <item> 
+            <title>Google Interview Preparation List Answer</title> 
+            <link>http://xx.xx.com/articles/google_list_answer.html?utm_source=rss&amp;utm_medium=rss</link> 
+            <guid>http://xx.xx.com/articles/google_list_answer.html</guid> 
+            <author>xx@xx.com zf</author> 
+            <pubDate>Thu, 22 Aug 2013 00:00:00 +0800</pubDate> 
+            <description>Google 面试列表整理</description> 
+        </item> 
+        
+        <item> 
             <title>Google Interview Preparation List</title> 
-            <link>博客URL/articles/google_list.html?utm_source=rss&amp;utm_medium=rss</link> 
-            <guid>博客URL/articles/google_list.html</guid> 
-            <author>邮箱 博客主</author> 
+            <link>http://xx.xx.com/articles/google_list.html?utm_source=rss&amp;utm_medium=rss</link> 
+            <guid>http://xx.xx.com/articles/google_list.html</guid> 
+            <author>xx@xx.com zf</author> 
             <pubDate>Mon, 19 Aug 2013 00:00:00 +0800</pubDate> 
-            <description>null</description> 
+            <description>Google 面试列表整理</description> 
+        </item> 
+        
+        <item> 
+            <title>papery 使用手册</title> 
+            <link>http://xx.xx.com/articles/readme.html?utm_source=rss&amp;utm_medium=rss</link> 
+            <guid>http://xx.xx.com/articles/readme.html</guid> 
+            <author>xx@xx.com zf</author> 
+            <pubDate>Mon, 19 Aug 2013 00:00:00 +0800</pubDate> 
+            <description>papery 使用手册</description> 
         </item> 
         
         <item> 
             <title>代码及数学公式示例</title> 
-            <link>博客URL/articles/second-post.html?utm_source=rss&amp;utm_medium=rss</link> 
-            <guid>博客URL/articles/second-post.html</guid> 
-            <author>邮箱 博客主</author> 
+            <link>http://xx.xx.com/articles/sample.html?utm_source=rss&amp;utm_medium=rss</link> 
+            <guid>http://xx.xx.com/articles/sample.html</guid> 
+            <author>xx@xx.com zf</author> 
             <pubDate>Tue, 01 Jan 2013 00:00:00 +0800</pubDate> 
             <description>这篇文章展示了如何在papery中使用代码和数学公式。</description> 
         </item> 

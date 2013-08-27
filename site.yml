@@ -1,17 +1,17 @@
-title: 博客标题
-subtitle: 博客副标题
-link: 博客URL
+title: Programming Blog
+subtitle: 
+link: http://xx.xx.com
 meta:
   description: 页面meta中的description
   keywords: !!seq
-    - 关键词1
-    - 关键词2
-    - 关键词3
-  author: 页面meta中的author
+    - security
+    - programming
+    - interview
+  author: zf
 master:
-  name: 博客主
-  about: 个人简介
-  email: 邮箱
+  name: zf
+  about: something about me
+  email: xx@xx.com
 rss:
   title: RSS源标题
   desc: RSS源描述

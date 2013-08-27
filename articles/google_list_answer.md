@@ -1,30 +1,48 @@
 ## 1. Integer [Anwser](./prob_integer.html)
-1. find number of 1s. [(Hamming weight)](http://en.wikipedia.org/wiki/Hamming_weight)
+1. Find number of 1s(Hamming weight). 
+[[ANSWER]](http://en.wikipedia.org/wiki/Hamming_weight)
 +  next largest smaller 
+[[ANSWER]](http://www.slideshare.net/gkumar007/bits-next-higher-presentation).
 +  smallest larger number
 +  determine if is palindrom
 +  itoa, atoi
 +  add 2 numbers w/o using + or arithmetic operators
 +  implement *, -, / using only +
++ Implement Add,Subtract,Multiplication,Division Using Bit Manipulation.
+[[ANSWER]](http://k2code.blogspot.sg/2012/01/implement-addsubtractmultiplicationdivi.html)
 +  find max of two numbers w/o comparison
 +  swap two numbers with +/-
 +  swap two numbers with ^
 +  given an integer, find the closest number that is palindrome
-+  implement putlong() by putchar() 
+[[ANSWER]](http://www.geeksforgeeks.org/given-a-number-find-next-smallest-palindrome-larger-than-this-number/)
++  Implement putlong() by putchar().
+[[ANSWER]](http://wuhrr.wordpress.com/2007/11/09/how-to-print-a-long-integer-using-only-putchar/)
 
 ## 2. Bit array
+[[DESCRIPTION]](http://en.wikipedia.org/wiki/Bit_array)
 
 ## 3. Linked list
-1. find cycle,
-+ reverse LL
-+ delete a node in middle
-+ each node contains a value pointer pointing to a node, duplicate LL.
+1. Find cycle in Linkded List
+[[ANSWER]](http://ostermiller.org/find_loop_singly_linked_list.html)
++  Reverse Linkded List
+[[ANSWER-1]](http://codercareer.blogspot.sg/2011/10/no-18-reverse-linked-list.html)
+[[ANSWER-2]](http://www.geeksforgeeks.org/write-a-function-to-reverse-the-nodes-of-a-linked-list/)
++  Delete a node in the middle of a singly linked list
+[[ANSWER]](http://www.programmerinterview.com/index.php/data-structures/delete-a-node-in-the-middle-of-a-singly-linked-list/)
++ Copy a linked list with next and arbit pointer.
+[[ANSWER]](http://www.geeksforgeeks.org/a-linked-list-with-next-and-arbit-pointer/)
 + remove duplicates from sorted/un-sorted LL.
-+ find n-th to last node to end
-+ number is represented by LL, add 2 numbers
+[[ANSWER]](http://www.geeksforgeeks.org/remove-duplicates-from-an-unsorted-linked-list/)
++ Find n-th to last node to end.
+[[ANSWER]](http://www.programmerinterview.com/index.php/data-structures/find-nth-to-last-element-in-a-linked-list/)
++ Add two numbers represented by linked lists.
+[[ANSWER_1]](http://www.programmerinterview.com/index.php/data-structures/find-nth-to-last-element-in-a-linked-list/)
+[[ANSWER-2]](http://www.geeksforgeeks.org/sum-of-two-linked-lists/)
 
 ## 4. Array
 1. Longest common substring (LCSubstr)
+[[ANSWER-1]](http://en.wikipedia.org/wiki/Longest_common_substring_problem)
+[[ANSWER-2]] (http://www.geeksforgeeks.org/longest-common-substring/)
 +  Longest common subsequence (LCS).
 +  Longest increasing subsequence (LIS).
 +  Longest palingdrome in string.
@@ -41,7 +59,7 @@
 ## 5. String
 1. KMP, Rabin-Karp, Boyer Moore
 +  reverse string
-+  reverse words in string  
++  reverse words in string
 +  strcpy, strcmp, strstr, atoi, itoa, strdup
 +  remove duplicate characters in O(1) space
 +  Given dictionary, transform one word to another of same length.

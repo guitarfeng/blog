@@ -1,0 +1,407 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="description" content="页面meta中的description"/>
+        <meta name="keywords" content="security,programming,interview"/>
+        <meta name="author" content="zf"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <title>Programming Blog - Answers for Integer Problems
+</title>
+        <link rel="stylesheet" href="/assets/vendor/normalize.css"/>
+        <link rel="stylesheet" href="/assets/vendor/prettify.css"/>
+        <link rel="stylesheet" href="/assets/themes/default/main.css"/>
+        <link rel="shortcut icon" href="/fav.ico"/>
+        <script type="text/javascript" src="/assets/vendor/prettify.js"></script>
+        
+    </head>
+    <body onload="prettyPrint()">
+    <div id="header">
+        <div id="header-inner">
+            <div id="title"><a href="/">Programming Blog</a></div>
+            <div id="subtitle">null</div>
+        </div>
+    </div>
+
+<div id="main">
+    <div id="main-inner">
+        <div id="topnav">
+            <ul>
+                <li><a href="/">首页</a></li>
+                <li class="sep"> | </li>
+                <li><a href="/tag.html">标签</a></li>
+                
+<li class="sep"> | </li>
+<li><a href="/pages/about-me.html" target="_self">关于我</a></li>
+
+<li class="sep"> | </li>
+<li><a href="https://github.com/ericzhang-cn/papery" target="_blank">github</a></li>
+
+
+            </ul>
+            <div style="clear:both;"></div>
+        </div>
+        <div id="article-title">
+            <a href="/articles/prob_integer.html">Answers for Integer Problems</a>
+        </div>
+        <div id="article-meta">
+            作者 guitarfeng | 发布于 2013-08-20
+        </div>
+        <div id="article-tags">
+        
+        <a class="tag" href="/tag.html#interview">interview</a>
+        
+        <a class="tag" href="/tag.html#answer">answer</a>
+        
+        <a class="tag" href="/tag.html#integer">integer</a>
+        
+        </div>
+        <div id="article-content">
+            <h1>Find Number of 1s. <a href="http://en.wikipedia.org/wiki/Hamming_weight">(Hamming weight)</a></h1>
+<p>Efficient way to count number of 1s in the binary representation of a
+number in O(1) if you have enough memory to play with.</p>
+<p>一共有三种方法</p>
+<h3>定长位运算</h3>
+<pre class="prettyprint"> 
+//types and constants used in the functions below
+
+typedef unsigned __int64 uint64;  //assume this gives 64-bits
+const uint64 m1  = 0x5555555555555555; //binary: 0101...
+const uint64 m2  = 0x3333333333333333; //binary: 00110011..
+const uint64 m4  = 0x0f0f0f0f0f0f0f0f; //binary:  4 zeros,  4 ones ...
+const uint64 m8  = 0x00ff00ff00ff00ff; //binary:  8 zeros,  8 ones ...
+const uint64 m16 = 0x0000ffff0000ffff; //binary: 16 zeros, 16 ones ...
+const uint64 m32 = 0x00000000ffffffff; //binary: 32 zeros, 32 ones
+const uint64 hff = 0xffffffffffffffff; //binary: all ones
+const uint64 h01 = 0x0101010101010101; //the sum of 256 to the power of 0,1,2,3...
+
+//This is a naive implementation, shown for comparison,
+//and to help in understanding the better functions.
+//It uses 24 arithmetic operations (shift, add, and).
+int popcount_1(uint64 x) {
+    x = (x & m1 ) + ((x >>  1) & m1 ); //put count of each  2 bits into those  2 bits 
+    x = (x & m2 ) + ((x >>  2) & m2 ); //put count of each  4 bits into those  4 bits 
+    x = (x & m4 ) + ((x >>  4) & m4 ); //put count of each  8 bits into those  8 bits 
+    x = (x & m8 ) + ((x >>  8) & m8 ); //put count of each 16 bits into those 16 bits 
+    x = (x & m16) + ((x >> 16) & m16); //put count of each 32 bits into those 32 bits 
+    x = (x & m32) + ((x >> 32) & m32); //put count of each 64 bits into those 64 bits 
+    return x;
+}
+
+//This uses fewer arithmetic operations than any other known  
+//implementation on machines with slow multiplication.
+//It uses 17 arithmetic operations.
+int popcount_2(uint64 x) {
+    x -= (x >> 1) & m1;             //put count of each 2 bits into those 2 bits
+    x = (x & m2) + ((x >> 2) & m2); //put count of each 4 bits into those 4 bits 
+    x = (x + (x >> 4)) & m4;        //put count of each 8 bits into those 8 bits 
+    x += x >>  8;  //put count of each 16 bits into their lowest 8 bits
+    x += x >> 16;  //put count of each 32 bits into their lowest 8 bits
+    x += x >> 32;  //put count of each 64 bits into their lowest 8 bits
+    return x & 0x7f;
+}
+
+//This uses fewer arithmetic operations than any other known  
+//implementation on machines with fast multiplication.
+//It uses 12 arithmetic operations, one of which is a multiply.
+int popcount_3(uint64 x) {
+    x -= (x >> 1) & m1;             //put count of each 2 bits into those 2 bits
+    x = (x & m2) + ((x >> 2) & m2); //put count of each 4 bits into those 4 bits 
+    x = (x + (x >> 4)) & m4;        //put count of each 8 bits into those 8 bits 
+    return (x * h01)>>56;  //returns left 8 bits of x + (x<<8) + (x<<16) + (x<<24) + ... 
+}
+</pre> 
+
+<h3>least significant nonzero bit (depends on the number of 1s)</h3>
+<pre class="prettyprint"> 
+int popcount_4(uint64 x) {
+    int count; 
+    for (count=0; x; count++) 
+        x &= x-1; 
+    return count; 
+}
+</pre> 
+
+<h3>查表法(unlimited memory)</h3>
+<pre class="prettyprint"> 
+static unsigned char wordbits[65536] = { bitcounts of ints between 0 and 65535 };
+static int popcount(uint32 i)
+{
+    return (wordbits[i&0xFFFF] + wordbits[i>>16]);
+}
+</pre> 
+
+
+<h1>Next Largest Smaller &amp;&amp; Smallest Larger Number</h1>
+<p>Given a number, find the next higher number which has the exact same
+set of digits as the original number. For example: given 38276 return
+38627.</p>
+<p>Here&#39;s an example:</p>
+<pre><code>123456784987654321
+start with a number
+
+123456784 987654321
+         ^ the first place where the left-digit is less-than the
+         right-digit is here.  Digit &quot;x&quot; is 4
+
+123456784 987654321
+         ^ find the smallest digit larger than 4 to the right
+
+123456785 4 98764321
+         ^ place it to the left of 4
+
+123456785 4 12346789
+123456785123446789
+         ^ sort the digits to the right of 5.  Since all of them except
+         the &#39;4&#39; were already in descending order, all we need to do
+         is reverse their order, and find the correct place for the &#39;4&#39;</code></pre>
+<p>Here&#39;s the Code: </p>
+<pre class="prettyprint"> 
+</pre> 
+
+<pre><code>Given an integer, print the next smallest and next largest number
+that have the same number of 1 bits in their binary representation.</code></pre>
+<p>Here is a detailed
+<a href="http://www.slideshare.net/gkumar007/bits-next-higher-presentation">Explanation</a>.</p>
+<h3>Alogrithm</h3>
+<ul>
+<li>Given a bit-pattern, start from right, find succesive zeros.
+(xxxx01111_0000);</li>
+<li>Folowed by zeroes find succesive 1&#39;s, stop on hitting a zero (xxxx0_1111 0000);</li>
+<li>Interchange that zero with a 1 from successive 1&#39;s (xxxx10_111 0000);</li>
+<li>Move the remaining 1&#39;s to extreme right, filling the gap with zeros
+(xxxx10 0000 111).  </li>
+</ul>
+<p>Here is the Code:</p>
+<pre class="prettyprint">
+unsigned foo(unsigned x) {
+    unsigned last_one = x & (-x);  // 从右到左第一个1
+    unsigned y = x + last_one;     // set 1
+    unsigned z = (y ^ x) >> 2 / last_one; // 取剩下的1
+    return y | z;
+}
+</pre> 
+
+
+<h1>Determine if is Palindrome</h1>
+<ul>
+<li>If input is a number, reverse the number from right to left.</li>
+<li>If input is a string, varify from two sides of the string.</li>
+</ul>
+<pre class="prettyprint">
+
+</pre> 
+
+<h1>itoa, atoi</h1>
+<p>base, negative. 
+关于负数取模运算，不同语言定义不同。参考<a href="http://www.googies.info/blog/184.html">负数的取模运算</a>。</p>
+<p>char <em>itoa (int value, char </em>str, int base);</p>
+<p>int atoi (const char * str); </p>
+<pre class="prettyprint">
+char* itoa(int value, char* result, int base) {
+    //check that the base if valid
+    if (base < 2 || base > 36) { 
+        *result = '\0';
+        return result; 
+    }
+
+    char* ptr = result, *ptr1 = result, tmp_char;
+    int tmp_value;
+
+    do {
+        tmp_value = value;
+        value /= base;
+        *ptr++ = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz" [35 + (tmp_value - value * base)];
+    } while (value);
+
+    // Apply negative sign
+    if (tmp_value < 0) 
+        *ptr++ = '-'; 
+
+    *ptr-- = '\0';
+
+    while(ptr1 < ptr) { 
+        tmp_char = *ptr;
+        *ptr-- = *ptr1;
+        *ptr1++ = tmp_char;
+    }
+    return result;
+} 
+</pre> 
+
+<pre class="prettyprint">
+std::string itoa(int value, int base) { 
+    std::string buf;
+
+    // check that the base if valid
+    if (base < 2 || base > 16) return buf;
+
+    enum { kMaxDigits = 35 };
+
+    // Pre-allocate enough space.  
+    buf.reserve(kMaxDigits);
+
+    int quotient = value;
+
+    // Translating number to string with base:
+    do {
+        std::cout << quotient % base << std::endl;
+        buf += "0123456789abcdef"[ std::abs(quotient % base) ]; // incorrect
+        quotient /= base;
+    } while (quotient); 
+
+    // Append the negative sign
+    if (value < 0)
+        buf += '-';
+
+    std::reverse(buf.begin(), buf.end());
+    return buf;
+}
+</pre> 
+
+<h1>Add 2 numbers without using + or arithmetic operators</h1>
+<p>Write a function Add() that returns sum of two integers. The
+function should not use any of the arithmetic operators (+, ++, -, --,
+.. etc).  Sum of two bits can be obtained by performing XOR (\^) of
+the two bits.  Carry bit can be obtained by performing AND (\&amp;) of two
+bits.</p>
+<p>Above is simple Half Adder logic that can be used to add 2 single
+bits. We can extend this logic for integers. If x and y don’t have set
+bits at same position(s), then bitwise XOR (\^) of x and y gives the
+sum of x and y. To incorporate common set bits also, bitwise AND (\&amp;)
+is used. Bitwise AND of x and y gives all carry bits. We calculate 
+(x &amp; y) &lt;&lt; 1 and add it to x ^ y to get the required result.  </p>
+<pre class="prettyprint">
+int Add(int x, y)
+{
+    // Iterate till there is no carry 
+    while (y != 0)
+    {
+        // carry now contains common set bits of x and y
+        int carry = x & y; 
+
+        // Sum of bits of x and y where at least one of the bits is not set
+        x = x ^ y;
+
+        // Carry is shifted by one so that adding it to x gives the required sum
+        y = carry << 1;
+    }
+    return x;
+}
+
+int main()
+{
+    printf("%d", Add(15, 32));
+    return 0;
+}
+
+//Following is recursive implementation for the same approach.
+
+int Add(int x, int y)
+{
+    if (y == 0)
+        return x;
+    else
+        return Add( x ^ y, (x & y) << 1);
+}
+</pre> 
+
+
+<h1>Implement *, -, / using only +</h1>
+<ul>
+<li>n * a = a + a + a + ... + a</li>
+</ul>
+<h3>Substract Only Using Increase and Loop</h3>
+<p>We have only two constructs, loop(a) means loop for a times,
+increment(a) increments a.
+Thus to implement a+b one could write </p>
+<pre><code>loop(a) {
+    inc(b)
+} 
+return b;</code></pre>
+<p>The question is how to implement a-b.</p>
+<p>Hint: If we can figure out dec(n) function, it&#39;s done.</p>
+<pre class="prettyprint">
+    DEC(n) {
+        cur = 0
+        loop (n) {
+            pre = cur
+            inc(cur)
+        }
+        /* Here cur == n, pre == n-1 */
+        return pre
+    }
+
+    /* a-b */
+    SUB(a, b) {
+        loop(b) {
+            DEC(a)
+        }
+    } 
+</pre> 
+
+<h1>find max of two numbers without comparison</h1>
+<pre class="prettyprint">
+int getMax(int a, int b) {  
+    int c = a - b;  
+    int k = (c >> 31) & 0x1;  
+    return a -  k * (a - b);  
+}
+</pre> 
+
+<h1>swap two numbers with +/-</h1>
+<pre class="prettyprint">
+void swap(int &a, int &b) { 
+    a = a + b;
+    b = a - b;
+    a = a - b;
+    return;
+}
+</pre> 
+
+<h1>swap two numbers with ^</h1>
+<pre class="prettyprint">
+void swap(int &a, int &b) { 
+    a = a ^ b;
+    b = a ^ b;
+    a = a ^ b;
+    return;
+}
+</pre> 
+
+<h1>given an integer, find the closest number that is palindrome</h1>
+<p><a href="http://www.geeksforgeeks.org/given-a-number-find-next-smallest-palindrome-larger-than-this-number/">http://www.geeksforgeeks.org/given-a-number-find-next-smallest-palindrome-larger-than-this-number/</a></p>
+<pre class="prettyprint">
+</pre> 
+
+<h1>implement putlong() by putchar()</h1>
+<p>Here is a popular interview question: write a C/C++ function which
+outputs a long integer to the console:</p>
+<pre><code>void putlong(long number);</code></pre>
+<p>To make it harder, the interview often specifies the following restrictions: 
++ You can only use putchar(char c) as your only mean of outputing to the console 
++ Do not create a string buffer to store the digits (this is necessary to reverse the order of the digits) 
++ No stack to reverse the digits 
++ No recursion allowed</p>
+<p>Hint: in place reverse number.  </p>
+<pre class="prettyprint">
+</pre> 
+
+
+        </div>
+        
+    </div>
+</div>
+        <div id="footer">
+            <div id="footer-inner">
+                <p id="copyright">Copyright (c) 2011-2013 版权所有方</p>
+                <p id="icp"><a href="http://www.miibeian.gov.cn/" target="_blank">备案号</a></p>
+            </div>
+        </div>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+    </body>
+</html>
+
